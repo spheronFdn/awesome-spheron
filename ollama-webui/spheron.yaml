@@ -1,0 +1,45 @@
+version: "1.0"
+
+services:
+  ollama-test:
+    image: ghcr.io/open-webui/open-webui:ollama
+    expose:
+      - port: 8080
+        as: 8080
+        to:
+          - global: true
+profiles:
+  name: ollama-testing
+  duration: 2h
+  mode: fizz
+  tier:
+    - community
+  compute:
+    ollama-test:
+      resources:
+        cpu:
+          units: 6
+        memory:
+          size: 16Gi
+        storage:
+          - size: 100Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                - model: rtx4090
+  placement:
+    westcoast:
+      attributes:
+        region: romania
+      pricing:
+        ollama-test:
+          token: USDT
+          amount: 1
+
+deployment:
+  ollama-test:
+    westcoast:
+      profile: ollama-test
+      count: 1

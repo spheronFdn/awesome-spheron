@@ -1,0 +1,53 @@
+version: "1.0"
+
+services:
+  kuzco-worker:
+    image: kuzcoxyz/worker:latest
+    expose:
+      - port: 8080
+        as: 8080
+        to:
+          - global: true
+    command:
+      - kuzco
+      - worker
+      - start
+      - --worker
+      - [worker_id] # TODO: replace with actual worker id from kuzco dashboard
+      - --code
+      - [code] # TODO: replace with actual code from kuzco dashboard
+profiles:
+  name: kuzco-worker
+  duration: 1h
+  mode: provider
+  tier:
+    - community
+  compute:
+    kuzco-worker:
+      resources:
+        cpu:
+          units: 8
+        memory:
+          size: 16Gi
+        storage:
+          - size: 200Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                - model: rtx4090
+  placement:
+    westcoast:
+      attributes:
+        region: us-west
+      pricing:
+        kuzco-worker:
+          token: USDT
+          amount: 5
+
+deployment:
+  kuzco-worker:
+    westcoast:
+      profile: kuzco-worker
+      count: 1

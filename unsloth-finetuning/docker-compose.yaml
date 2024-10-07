@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  unsloth-finetuning:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: spheronnetwork/unsloth-finetuning:cuda12-pytorch
+    ports:
+      - "8888:8888"  # Jupyter Notebook
+    environment:
+      - JUPYTER_TOKEN=testing
+

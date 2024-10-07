@@ -1,0 +1,47 @@
+version: "1.0"
+
+services:
+  py-cuda:
+    image: quay.io/jupyter/pytorch-notebook:cuda12-pytorch-2.4.1
+    expose:
+      - port: 8888
+        as: 8888
+        to:
+          - global: true
+      env:
+        - JUPYTER_TOKEN=sentient
+profiles:
+  name: py-cuda
+  duration: 2h
+  mode: provider
+  tier:
+    - community
+  compute:
+    py-cuda:
+      resources:
+        cpu:
+          units: 8
+        memory:
+          size: 16Gi
+        storage:
+          - size: 200Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                - model: h100
+  placement:
+    westcoast:
+      attributes:
+        region: us-west
+      pricing:
+        py-cuda:
+          token: USDT
+          amount: 10
+
+deployment:
+  py-cuda:
+    westcoast:
+      profile: py-cuda
+      count: 1

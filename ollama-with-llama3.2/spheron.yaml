@@ -1,0 +1,49 @@
+version: "1.0"
+
+services:
+  ollama-test:
+    image: ollama/ollama:0.3.12
+    expose:
+      - port: 11434
+        as: 11434
+        to:
+          - global: true
+    command:
+      - "sh"
+      - "-c"
+      - "apt update && apt install -y curl && /bin/ollama serve & while ! curl -s http://localhost:11434/api/tags > /dev/null; do sleep 1; done && /bin/ollama pull llama3.2 && /bin/ollama run llama3.2 'Hello' && tail -f /dev/null"
+profiles:
+  name: ollama-testing
+  duration: 1h
+  mode: provider
+  tier:
+    - community
+  compute:
+    ollama-test:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 2Gi
+        storage:
+          - size: 50Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                - model: rtx3090
+  placement:
+    westcoast:
+      attributes:
+        region: us-east
+      pricing:
+        ollama-test:
+          token: USDT
+          amount: 5
+
+deployment:
+  ollama-test:
+    westcoast:
+      profile: ollama-test
+      count: 1
