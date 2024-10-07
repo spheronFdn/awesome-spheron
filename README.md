@@ -17,7 +17,7 @@ This repository contains a collection of ready-to-deploy GPU application templat
 
 ### AI Development Templates
 
-3. [**Jupyter Notebook with PyTorch**](./jupyter-pytorch)
+3. [**Jupyter Notebook with PyTorch**](./jupyter-with-pytorch)
 
    - Pre-installed PyTorch environment
    - Ready for data science and machine learning tasks
@@ -27,7 +27,7 @@ This repository contains a collection of ready-to-deploy GPU application templat
    - Test and interact with various LLMs supported by Ollama
    - User-friendly web interface
 
-5. [**Ollama with Pre-installed Model**](./ollama-preinstalled)
+5. [**Ollama with Pre-installed Model**](./ollama-with-llama3.2/)
 
    - Ollama server pre-configured with LLaMA 3.2
    - Easily customizable to use any model from the Ollama registry
