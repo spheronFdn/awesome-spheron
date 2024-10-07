@@ -6,39 +6,39 @@ This repository contains a collection of ready-to-deploy GPU application templat
 
 ### AI x Web3 Protocols
 
-1. **Flock Validator**
+1. [**Flock Validator**](./flock-validator)
 
    - Run a validator node for the Flock protocol
    - Requires GPU resources
 
-2. **Kuzco Worker**
+2. [**Kuzco Worker**](./kuzco-worker)
    - Deploy a worker node for the Kuzco protocol
    - Utilizes Spheron's GPU infrastructure
 
 ### AI Development Templates
 
-3. **Jupyter Notebook with PyTorch**
+3. [**Jupyter Notebook with PyTorch**](./jupyter-pytorch)
 
    - Pre-installed PyTorch environment
    - Ready for data science and machine learning tasks
 
-4. **Ollama with WebUI**
+4. [**Ollama with WebUI**](./ollama-webui)
 
    - Test and interact with various LLMs supported by Ollama
    - User-friendly web interface
 
-5. **Ollama with Pre-installed Model**
+5. [**Ollama with Pre-installed Model**](./ollama-preinstalled)
 
    - Ollama server pre-configured with LLaMA 3.2
    - Easily customizable to use any model from the Ollama registry
 
-6. **VS Code with Ollama**
+6. [**VS Code with Ollama**](./vscode-ollama)
 
    - Remote development environment with GPU support
    - Ideal for building AI applications using Ollama
    - Can be adapted to host your own AI application
 
-7. **Unsloth Finetuning**
+7. [**Unsloth Finetuning**](./unsloth-finetuning)
    - Pre-installed Unsloth Jupyter notebook
    - Helpful for trying out finetuning using the Unsloth library
 
