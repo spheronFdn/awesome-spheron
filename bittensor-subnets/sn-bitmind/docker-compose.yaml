@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  miner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: spheronnetwork/sn-bitmind:v1.0.0
+    environment:
+      - COLDKEY_MNEMONIC="club senior spray wagon indicate sunny carpet reduce wealth need huge oil"
+      - HOTKEY_MNEMONIC="brisk child group reward huge permit solar found bag annual great smile"
+    restart: unless-stopped
