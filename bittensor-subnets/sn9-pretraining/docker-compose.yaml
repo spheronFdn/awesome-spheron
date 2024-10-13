@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  miner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: spheronnetwork/sn9-pretraining:v1.0.6
+    environment:
+      - HF_ACCESS_TOKEN="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"
+      - HF_REPO_ID="rekpero/sn9-pretraining"
+      - AVG_LOSS_UPLOAD_THRESHOLD=0.01
+      - COLDKEY_MNEMONIC="club senior spray wagon indicate sunny carpet reduce wealth need huge oil"
+      - HOTKEY_MNEMONIC="brisk child group reward huge permit solar found bag annual great smile"
+    restart: unless-stopped
