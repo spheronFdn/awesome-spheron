@@ -39,8 +39,8 @@ profiles:
         region: us-west
       pricing:
         web:
-          denom: USDT
-          amount: 80000000
+          token: USDT
+          amount: 1
 
 deployment:
   web:
