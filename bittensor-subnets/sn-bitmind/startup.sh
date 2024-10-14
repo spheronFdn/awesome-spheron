@@ -22,6 +22,7 @@ btcli_path=$(find_btcli)
 if [ -z "$btcli_path" ]; then
     echo "btcli not found. Attempting to install..."
     pip install bittensor
+    export PATH="/root/.local/bin:$PATH"
     btcli_path=$(find_btcli)
 fi
 
