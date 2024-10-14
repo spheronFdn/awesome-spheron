@@ -7,9 +7,9 @@ services:
       dockerfile: Dockerfile
     image: spheronnetwork/sn9-pretraining:v1.0.6
     environment:
-      - HF_ACCESS_TOKEN=""
-      - HF_REPO_ID="rekpero/sn9-pretraining"
+      - HF_ACCESS_TOKEN=
+      - HF_REPO_ID=rekpero/sn9-pretraining
       - AVG_LOSS_UPLOAD_THRESHOLD=0.01
-      - COLDKEY_MNEMONIC=""
-      - HOTKEY_MNEMONIC=""
+      - COLDKEY_MNEMONIC=
+      - HOTKEY_MNEMONIC=
     restart: unless-stopped

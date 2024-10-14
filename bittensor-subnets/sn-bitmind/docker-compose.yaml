@@ -7,6 +7,6 @@ services:
       dockerfile: Dockerfile
     image: spheronnetwork/sn-bitmind:v1.0.0
     environment:
-      - COLDKEY_MNEMONIC=""
-      - HOTKEY_MNEMONIC=""
+      - COLDKEY_MNEMONIC=
+      - HOTKEY_MNEMONIC=
     restart: unless-stopped

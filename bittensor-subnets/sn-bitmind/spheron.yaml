@@ -13,8 +13,8 @@ services:
         to:
           - global: true
     env:
-      - COLDKEY_MNEMONIC=""
-      - HOTKEY_MNEMONIC=""
+      - COLDKEY_MNEMONIC=
+      - HOTKEY_MNEMONIC=
 
 profiles:
   name: sn9-pretraining

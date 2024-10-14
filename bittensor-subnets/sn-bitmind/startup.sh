@@ -48,7 +48,7 @@ btcli wallet list -p ~/.bittensor/wallets/
 
 # Run the miner
 echo "Registering miner..."
-btcli s register --netuid 168 --wallet.name default --wallet.hotkey default --subtensor.network test
+btcli s register --netuid 168 --wallet.name default --wallet.hotkey default --subtensor.network test --no-prompt --wallet-path ~/.bittensor/wallets/
 
 echo "Starting miner..."
 pm2 start run_neuron.py --name bitmind-miner --log ~/.pm2/logs/bitmind-miner.log -- --miner
