@@ -52,7 +52,7 @@ RUN pip install --no-cache-dir -r requirements-miner.txt && \
 COPY btcli-install.sh /tmp/btcli-install.sh
 RUN sed -i 's/sudo //g' /tmp/btcli-install.sh && \
     chmod +x /tmp/btcli-install.sh && \
-    /tmp/btcli-install.sh && \
+    bash /tmp/btcli-install.sh && \
     rm /tmp/btcli-install.sh
 
 # Copy the wallet setup script

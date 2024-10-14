@@ -2,9 +2,6 @@
 #!/bin/bash
 set -u
 
-# enable  command completion
-set -o history -o histexpand
-
 python="python3"
 
 abort() {
