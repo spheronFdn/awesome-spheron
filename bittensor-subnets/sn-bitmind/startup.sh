@@ -35,6 +35,18 @@ btcli_dir=$(dirname "$btcli_path")
 export PATH="$btcli_dir:$PATH"
 
 echo "Using btcli from: $btcli_path"
+echo "Current PATH: $PATH"
+
+# Function to run btcli commands
+run_btcli() {
+    if [ -n "$btcli_path" ]; then
+        echo "Running: $btcli_path $@"
+        "$btcli_path" "$@"
+    else
+        echo "Error: btcli not found"
+        return 1
+    fi
+}
 
 # Create miner.env file with default settings
 echo "# Default options:
@@ -65,19 +77,19 @@ echo "Downloading data..."
 
 # Regenerate coldkey
 echo "Regenerating coldkey..."
-btcli wallet regen_coldkey --wallet.name default --mnemonic "$COLDKEY_MNEMONIC" --no-use-password -p ~/.bittensor/wallets/
+run_btcli wallet regen_coldkey --wallet.name default --mnemonic "$COLDKEY_MNEMONIC" --no-use-password -p ~/.bittensor/wallets/
 
 # Regenerate hotkey
 echo "Regenerating hotkey..."
-btcli wallet regen_hotkey --wallet.name default --mnemonic "$HOTKEY_MNEMONIC" --wallet.hotkey default -p ~/.bittensor/wallets/
+run_btcli wallet regen_hotkey --wallet.name default --mnemonic "$HOTKEY_MNEMONIC" --wallet.hotkey default -p ~/.bittensor/wallets/
 
 # List wallets to verify creation
 echo "Listing wallets..."
-btcli wallet list -p ~/.bittensor/wallets/
+run_btcli wallet list -p ~/.bittensor/wallets/
 
 # Run the miner
 echo "Registering miner..."
-btcli s register --netuid 168 --wallet.name default --wallet.hotkey default --subtensor.network test
+run_btcli s register --netuid 168 --wallet.name default --wallet.hotkey default --subtensor.network test
 
 echo "Starting miner..."
 pm2 start run_neuron.py --name bitmind-miner --log ~/.pm2/logs/bitmind-miner.log -- --miner
