@@ -40,13 +40,8 @@ echo "Current PATH: $PATH"
 
 # Function to run btcli commands
 run_btcli() {
-    if [ -n "$btcli_path" ]; then
-        echo "Running: $btcli_path $@"
-        "$btcli_path" "$@"
-    else
-        echo "Error: btcli not found"
-        return 1
-    fi
+    echo "Running: btcli $@"
+    btcli "$@"
 }
 
 # Create miner.env file with default settings

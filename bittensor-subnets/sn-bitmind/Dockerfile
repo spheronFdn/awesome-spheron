@@ -49,8 +49,10 @@ RUN git clone https://github.com/bitmind-ai/bitmind-subnet.git .
 RUN pip install --no-cache-dir -r requirements-miner.txt && \
     pip install -e .
 
-# Install bittensor and btcli
-RUN pip install bittensor
+# Install bittensor and ensure btcli is available
+RUN pip uninstall bittensor bittensor-cli -y && \
+    pip install bittensor && \
+    which btcli
 
 # Ensure btcli is in the PATH
 ENV PATH="/root/.local/bin:${PATH}"
