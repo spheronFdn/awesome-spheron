@@ -54,15 +54,6 @@ RUN pip uninstall bittensor bittensor-cli -y && \
     pip install bittensor && \
     which btcli
 
-# Ensure btcli is in the PATH
-ENV PATH="/root/.local/bin:${PATH}"
-
-# COPY btcli-install.sh /tmp/btcli-install.sh
-# RUN sed -i 's/sudo //g' /tmp/btcli-install.sh && \
-#     chmod +x /tmp/btcli-install.sh && \
-#     bash /tmp/btcli-install.sh && \
-#     rm /tmp/btcli-install.sh
-
 # Copy the wallet setup script
 COPY startup.sh /app/startup.sh
 RUN chmod +x /app/startup.sh
