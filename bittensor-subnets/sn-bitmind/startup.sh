@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Check if required environment variables are set
 if [ -z "$COLDKEY_MNEMONIC" ] || [ -z "$HOTKEY_MNEMONIC" ]; then
@@ -31,7 +31,7 @@ MINER_AXON_PORT=8091
 BLACKLIST_FORCE_VALIDATOR_PERMIT=True          # Default setting to force validator permit for blacklisting" > miner.env
 
 set -a
-source miner.env
+. miner.env
 set +a
 
 # Download data
