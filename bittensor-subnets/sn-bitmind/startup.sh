@@ -30,17 +30,21 @@ WALLET_HOTKEY=default
 MINER_AXON_PORT=8091
 BLACKLIST_FORCE_VALIDATOR_PERMIT=True          # Default setting to force validator permit for blacklisting" > miner.env
 
+set -a
+source miner.env
+set +a
+
 # Download data
 echo "Downloading data..."
 # python bitmind/download_data.py
 
 # Regenerate coldkey
 echo "Regenerating coldkey..."
-btcli wallet regen_coldkey --wallet.name default --mnemonic "$COLDKEY_MNEMONIC" --no-use-password -p ~/.bittensor/wallets/
+btcli wallet regen_coldkey --wallet.name $WALLET_NAME --mnemonic "$COLDKEY_MNEMONIC" --no-use-password -p ~/.bittensor/wallets/
 
 # Regenerate hotkey
 echo "Regenerating hotkey..."
-btcli wallet regen_hotkey --wallet.name default --mnemonic "$HOTKEY_MNEMONIC" --wallet.hotkey default -p ~/.bittensor/wallets/
+btcli wallet regen_hotkey --wallet.name $WALLET_NAME --mnemonic "$HOTKEY_MNEMONIC" --wallet.hotkey $WALLET_HOTKEY -p ~/.bittensor/wallets/
 
 # List wallets to verify creation
 echo "Listing wallets..."
@@ -48,10 +52,9 @@ btcli wallet list -p ~/.bittensor/wallets/
 
 # Run the miner
 echo "Registering miner..."
-btcli s register --netuid 168 --wallet.name default --wallet.hotkey default --subtensor.network test --no-prompt --wallet-path ~/.bittensor/wallets/
+btcli s register --netuid $NETUID --wallet.name $WALLET_NAME --wallet.hotkey $WALLET_HOTKEY --subtensor.network $SUBTENSOR_NETWORK --no-prompt --wallet-path ~/.bittensor/wallets/
 
 echo "Starting miner..."
-pm2 start run_neuron.py --name bitmind-miner --log ~/.pm2/logs/bitmind-miner.log -- --miner
+./start_miner.sh
 
-# Display the logs
-pm2 logs bitmind-miner
+# The script ends here, so we don't need to display logs
