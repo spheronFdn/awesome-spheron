@@ -7,6 +7,35 @@ if [ -z "$COLDKEY_MNEMONIC" ] || [ -z "$HOTKEY_MNEMONIC" ]; then
     exit 1
 fi
 
+# Function to find btcli
+find_btcli() {
+    btcli_path=$(which btcli 2>/dev/null)
+    if [ -z "$btcli_path" ]; then
+        echo "btcli not found in PATH. Attempting to find it..."
+        btcli_path=$(find / -name btcli 2>/dev/null | head -n 1)
+    fi
+    echo "$btcli_path"
+}
+
+# Find or install btcli
+btcli_path=$(find_btcli)
+if [ -z "$btcli_path" ]; then
+    echo "btcli not found. Attempting to install..."
+    pip install bittensor
+    btcli_path=$(find_btcli)
+fi
+
+if [ -z "$btcli_path" ]; then
+    echo "Error: Unable to find or install btcli. Exiting."
+    exit 1
+fi
+
+# Add btcli directory to PATH
+btcli_dir=$(dirname "$btcli_path")
+export PATH="$btcli_dir:$PATH"
+
+echo "Using btcli from: $btcli_path"
+
 # Create miner.env file with default settings
 echo "# Default options:
 DETECTOR=CAMO                                  # Options: CAMO, UCF, NPR
