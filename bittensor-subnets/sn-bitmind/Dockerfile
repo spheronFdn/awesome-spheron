@@ -4,7 +4,7 @@ FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04
 # Set environment variable to prevent interactive prompts
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install prerequisites and Python 3.10
+# Install prerequisites, Python 3.9, and additional packages
 RUN apt-get update && apt-get install -y \
     software-properties-common \
     wget \
@@ -21,18 +21,12 @@ RUN apt-get update && apt-get install -y \
     liblapack-dev \
     libx11-dev \
     libgtk-3-dev \
-    libboost-all-dev \
-    libatlas-base-dev \
-    libglib2.0-0 \
-    libsm6 \
-    libxrender1 \
-    libxext6 \
     && add-apt-repository ppa:deadsnakes/ppa -y \
     && apt-get update \
     && apt-get install -y \
-    python3.10 \
-    python3.10-venv \
-    python3.10-dev \
+    python3.9 \
+    python3.9-venv \
+    python3.9-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -42,8 +36,8 @@ RUN npm install pm2@latest -g
 # Install Code Server
 RUN curl -fsSL https://code-server.dev/install.sh | sh
 
-# Set Python3.10 as the default python
-RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.10 1
+# Set Python3.9 as the default python
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.9 1
 
 # Set the working directory in the container
 WORKDIR /app
@@ -53,13 +47,12 @@ RUN git clone https://github.com/bitmind-ai/bitmind-subnet.git .
 
 # Install bitmind requirements
 RUN pip install --no-cache-dir -r requirements-miner.txt && \
-    pip install --no-cache-dir dlib==19.24.0 && \
     pip install -e .
 
 COPY btcli-install.sh /tmp/btcli-install.sh
 RUN sed -i 's/sudo //g' /tmp/btcli-install.sh && \
     chmod +x /tmp/btcli-install.sh && \
-    bash /tmp/btcli-install.sh && \
+    /tmp/btcli-install.sh && \
     rm /tmp/btcli-install.sh
 
 # Copy the wallet setup script

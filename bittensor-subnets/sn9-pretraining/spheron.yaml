@@ -9,11 +9,11 @@ services:
         to:
           - global: true
     env:
-      - HF_ACCESS_TOKEN=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
+      - HF_ACCESS_TOKEN=""
       - HF_REPO_ID=rekpero/sn9-pretraining
       - AVG_LOSS_UPLOAD_THRESHOLD=0.01
-      - COLDKEY_MNEMONIC=club senior spray wagon indicate sunny carpet reduce wealth need huge oil
-      - HOTKEY_MNEMONIC=brisk child group reward huge permit solar found bag annual great smile
+      - COLDKEY_MNEMONIC=""
+      - HOTKEY_MNEMONIC=""
 
 profiles:
   name: sn9-pretraining

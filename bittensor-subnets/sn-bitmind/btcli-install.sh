@@ -68,12 +68,12 @@ ohai() {
 }
 
 # Things can fail later if `pwd` doesn't exist.
-# Also sudo prints a warning message for no good reason
+# Also  prints a warning message for no good reason
 cd "/usr" || exit 1
 
 linux_install_pre() {
-    sudo apt-get update 
-    sudo apt-get install --no-install-recommends --no-install-suggests -y apt-utils curl git cmake build-essential
+     apt-get update 
+     apt-get install --no-install-recommends --no-install-suggests -y apt-utils curl git cmake build-essential
     exit_on_error $?
 }
 
@@ -81,14 +81,14 @@ linux_install_python() {
     which $python
     if [[ $? != 0 ]] ; then
         ohai "Installing python"
-        sudo apt-get install --no-install-recommends --no-install-suggests -y $python
+         apt-get install --no-install-recommends --no-install-suggests -y $python
     else
         ohai "Updating python"
-        sudo apt-get install --only-upgrade $python
+         apt-get install --only-upgrade $python
     fi
     exit_on_error $? 
     ohai "Installing python tools"
-    sudo apt-get install --no-install-recommends --no-install-suggests -y $python-pip $python-dev 
+     apt-get install --no-install-recommends --no-install-suggests -y $python-pip $python-dev 
     exit_on_error $? 
 }
 

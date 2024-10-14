@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Check if required environment variables are set
 if [ -z "$COLDKEY_MNEMONIC" ] || [ -z "$HOTKEY_MNEMONIC" ]; then
@@ -6,9 +6,6 @@ if [ -z "$COLDKEY_MNEMONIC" ] || [ -z "$HOTKEY_MNEMONIC" ]; then
     echo "Please ensure COLDKEY_MNEMONIC, and HOTKEY_MNEMONIC are set."
     exit 1
 fi
-
-# Activate conda environment
-conda activate bitmind
 
 # Create miner.env file with default settings
 echo "# Default options:
@@ -34,18 +31,27 @@ MINER_AXON_PORT=8091
 BLACKLIST_FORCE_VALIDATOR_PERMIT=True          # Default setting to force validator permit for blacklisting" > miner.env
 
 # Download data
-python bitmind/download_data.py
+echo "Downloading data..."
+# python bitmind/download_data.py
 
 # Regenerate coldkey
+echo "Regenerating coldkey..."
 btcli wallet regen_coldkey --wallet.name default --mnemonic "$COLDKEY_MNEMONIC" --no-use-password -p ~/.bittensor/wallets/
 
 # Regenerate hotkey
+echo "Regenerating hotkey..."
 btcli wallet regen_hotkey --wallet.name default --mnemonic "$HOTKEY_MNEMONIC" --wallet.hotkey default -p ~/.bittensor/wallets/
 
 # List wallets to verify creation
+echo "Listing wallets..."
 btcli wallet list -p ~/.bittensor/wallets/
 
 # Run the miner
+echo "Registering miner..."
 btcli s register --netuid 168 --wallet.name default --wallet.hotkey default --subtensor.network test
 
-pm2 start run_neuron.py -- --miner 
+echo "Starting miner..."
+pm2 start run_neuron.py --name bitmind-miner --log ~/.pm2/logs/bitmind-miner.log -- --miner
+
+# Display the logs
+pm2 logs bitmind-miner
