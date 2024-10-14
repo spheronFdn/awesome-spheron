@@ -55,6 +55,16 @@ echo "Registering miner..."
 btcli s register --netuid $NETUID --wallet.name $WALLET_NAME --wallet.hotkey $WALLET_HOTKEY --subtensor.network $SUBTENSOR_NETWORK --no-prompt --wallet-path ~/.bittensor/wallets/
 
 echo "Starting miner..."
-./start_miner.sh
+python neurons/miner.py \
+  --neuron.detector $DETECTOR \
+  --neuron.detector_config $DETECTOR_CONFIG \
+  --neuron.device $DEVICE \
+  --netuid $NETUID \
+  --subtensor.network $SUBTENSOR_NETWORK \
+  --subtensor.chain_endpoint $SUBTENSOR_CHAIN_ENDPOINT \
+  --wallet.name $WALLET_NAME \
+  --wallet.hotkey $WALLET_HOTKEY \
+  --axon.port $MINER_AXON_PORT \
+  --blacklist.force_validator_permit $BLACKLIST_FORCE_VALIDATOR_PERMIT
 
-# The script ends here, so we don't need to display logs
+# The script ends here
