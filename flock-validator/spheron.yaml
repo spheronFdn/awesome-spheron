@@ -18,6 +18,7 @@ profiles:
   duration: 30min
   tier:
     - community
+  mode: provider
   compute:
     web:
       resources:
