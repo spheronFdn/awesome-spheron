@@ -2,18 +2,15 @@ version: "1.0"
 
 services:
   web:
-    image: ghcr.io/flock-io/llm-loss-validator:latest
+    image: vatsalshah01/bitnet-inference:latest
     expose:
-      - port: 3000
-        as: 3000
+      - port: 8000
+        as: 8000
         to:
           - global: true
-    env:
-      - FLOCK_API_KEY=
-      - TASK_ID=
-      - HF_TOKEN=
+
 profiles:
-  name: flock
+  name: bitnet-llama3-8b
   duration: 30min
   tier:
     - community
@@ -27,7 +24,7 @@ profiles:
           size: 24Gi
         storage:
           size: 100Gi
-        gpu:
+        gpu: #optional
           units: 1
           attributes:
             vendor:

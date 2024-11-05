@@ -1,0 +1,147 @@
+version: "1.0"
+
+services:
+  ray-worker:
+    image: spheronnetwork/ray-worker-node:latest
+    pull_policy: Always
+    expose:
+      - port: 8000
+        as: 8000
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8001
+        as: 8001
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8002
+        as: 8002
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8003
+        as: 8003
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8004
+        as: 8004
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8005
+        as: 8005
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8006
+        as: 8006
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8007
+        as: 8007
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8008
+        as: 8008
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8009
+        as: 8009
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8010
+        as: 8010
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8011
+        as: 8011
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8012
+        as: 8012
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8013
+        as: 8013
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8014
+        as: 8014
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8015
+        as: 8015
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8016
+        as: 8016
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8017
+        as: 8017
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8018
+        as: 8018
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8019
+        as: 8019
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8020
+        as: 8020
+        use_public_port: true
+        to:
+          - global: true
+    env:
+      - HEAD_NODE_ADDRESS=provider.testnetbsphn.xyz:31935
+profiles:
+  name: ray-worker-testing
+  mode: fizz
+  duration: 1h
+  tier:
+    - community
+  compute:
+    ray-worker:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 8Gi
+        storage:
+          - size: 50Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                - model: rtx4090
+  placement:
+    westcoast:
+      pricing:
+        ray-worker:
+          token: USDC
+          amount: 1
+
+deployment:
+  ray-worker:
+    westcoast:
+      profile: ray-worker
+      count: 1

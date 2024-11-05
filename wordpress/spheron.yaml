@@ -1,0 +1,79 @@
+version: "1.0"
+services:
+  wordpress:
+    image: wordpress
+    expose:
+      - port: 80
+        as: 8080
+        to:
+          - global: true
+    env:
+      - WORDPRESS_DB_HOST=db
+      - WORDPRESS_DB_USER=wordpress
+      - WORDPRESS_DB_PASSWORD=testpass4you
+      - WORDPRESS_DB_NAME=wordpress
+    command:
+      - "bash"
+      - "-c"
+    args:
+      - 'grep -q upload_max_filesize /var/www/html/.htaccess 2>/dev/null || { echo -e "php_value upload_max_filesize 64M\nphp_value post_max_size 64M\nphp_value max_execution_time 300\nphp_value max_input_time 300" | tee -a /var/www/html/.htaccess; }; exec docker-entrypoint.sh apache2-foreground'
+  db:
+    # We use a mariadb image which supports both amd64 & arm64 architecture
+    image: mariadb:10.6.4
+    expose:
+      - port: 3306
+        as: 3306
+        to:
+          - service: wordpress
+      - port: 33060
+        as: 33060
+        to:
+          - service: wordpress
+    env:
+      - MYSQL_RANDOM_ROOT_PASSWORD=1
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=wordpress
+      - MYSQL_PASSWORD=testpass4you
+profiles:
+  name: spheron-wordpress
+  mode: provider
+  duration: 1h
+  tier:
+    - community
+  compute:
+    wordpress:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 4Gi
+        storage:
+          - size: 4Gi
+    db:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          - size: 1Gi
+  placement:
+    westcoast:
+      attributes:
+        region: us-west
+      pricing:
+        wordpress:
+          token: USDT
+          amount: 0.5
+        db:
+          token: USDT
+          amount: 0.5
+deployment:
+  wordpress:
+    westcoast:
+      profile: wordpress
+      count: 1
+  db:
+    westcoast:
+      profile: db
+      count: 1

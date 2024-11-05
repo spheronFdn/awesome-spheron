@@ -1,0 +1,68 @@
+version: "1.0"
+services:
+  vllmtest:
+    image: ghcr.io/vllm-project/vllm:latest
+    env:
+      - HF_TOKEN=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
+    expose:
+      - port: 8080
+        to:
+          - global: true
+    command:
+      - python
+      - -m
+      - vllm.entrypoints.openai.api_server
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8000"
+      - --model
+      - meta-llama/Meta-Llama-3.1-7B-base
+      - --tensor-parallel-size
+      - 2
+      - --trust-remote-code
+    params:
+      storage:
+        shharedmem:
+          mount: /dev/shm
+
+profiles:
+  name: vllm
+  mode: provider
+  duration: 30min
+  tier:
+    - community
+  compute:
+    vllmtest:
+      resources:
+        cpu:
+          units: 6
+        memory:
+          size: 20Gi
+        storage:
+          - size: 100Gi
+          - name: shharedmem
+            size: 20Gi
+            attributes:
+              persistent: false
+              class: ram
+        gpu:
+          units: 2
+          attributes:
+            vendor:
+              nvidia:
+                - model: rtx4090
+  placement:
+    centralcoast:
+      attributes:
+        region: us-central
+      pricing:
+        vllmtest:
+          token: USDT
+          amount: 5
+
+deployment:
+  vllmtest:
+    centralcoast:
+      profile: vllmtest
+      count: 1

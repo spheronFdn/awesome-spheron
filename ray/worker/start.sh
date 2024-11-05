@@ -1,0 +1,3 @@
+#!/bin/bash
+env
+ray start --address $HEAD_NODE_ADDRESS --node-ip-address $GATEWAY_IP --object-manager-port $TUNNEL_PORT_8000 --node-manager-port $TUNNEL_PORT_8001 --runtime-env-agent-port $TUNNEL_PORT_8002 --dashboard-agent-grpc-port $TUNNEL_PORT_8003 --dashboard-agent-listen-port $TUNNEL_PORT_8004 --metrics-export-port $TUNNEL_PORT_8005  --worker-port-list $TUNNEL_PORT_8006,$TUNNEL_PORT_8007,$TUNNEL_PORT_8008,$TUNNEL_PORT_8009,$TUNNEL_PORT_8010,$TUNNEL_PORT_8011,$TUNNEL_PORT_8012,$TUNNEL_PORT_8013,$TUNNEL_PORT_8014,$TUNNEL_PORT_8015,$TUNNEL_PORT_8016,$TUNNEL_PORT_8017,$TUNNEL_PORT_8018,$TUNNEL_PORT_8019,$TUNNEL_PORT_8020 --block

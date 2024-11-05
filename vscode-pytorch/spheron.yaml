@@ -1,0 +1,52 @@
+version: "1.0"
+
+services:
+  vscode-pytorch:
+    image: spheronnetwork/vscode-pytorch:latest
+    expose:
+      - port: 8080
+        as: 8080
+        to:
+          - global: true
+    env:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - PASSWORD=mitra
+      - HASHED_PASSWORD=
+      - SUDO_PASSWORD=mitra
+      - SUDO_PASSWORD_HASH=
+      - DEFAULT_WORKSPACE=/config/workspace
+profiles:
+  name: vscode-pytorch
+  duration: 1h
+  mode: provider
+  tier:
+    - community
+  compute:
+    vscode-pytorch:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 2Gi
+        storage:
+          - size: 50Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                - model: rtx4090
+  placement:
+    westcoast:
+      pricing:
+        vscode-pytorch:
+          token: USDT
+          amount: 5
+
+deployment:
+  vscode-pytorch:
+    westcoast:
+      profile: vscode-pytorch
+      count: 1

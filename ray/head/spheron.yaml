@@ -1,0 +1,61 @@
+version: "1.0"
+
+services:
+  ray-head:
+    image: spheronnetwork/ray-head-node:latest
+    expose:
+      - port: 3000
+        as: 3000
+        to:
+          - global: true
+      - port: 8080
+        as: 8080
+        to:
+          - global: true
+      - port: 8888
+        as: 8888
+        to:
+          - global: true
+      - port: 6379
+        as: 6379
+        to:
+          - global: true
+      - port: 8265
+        as: 8265
+        to:
+          - global: true
+      - port: 10001
+        as: 10001
+        to:
+          - global: true
+    env:
+      - RAY_health_check_timeout_ms=20000
+profiles:
+  name: ray-head-testing
+  duration: 1h
+  mode: provider
+  tier:
+    - community
+  compute:
+    ray-head:
+      resources:
+        cpu:
+          units: 8
+        memory:
+          size: 16Gi
+        storage:
+          - size: 100Gi
+  placement:
+    westcoast:
+      attributes:
+        region: france
+      pricing:
+        ray-head:
+          token: USDT
+          amount: 1
+
+deployment:
+  ray-head:
+    westcoast:
+      profile: ray-head
+      count: 1

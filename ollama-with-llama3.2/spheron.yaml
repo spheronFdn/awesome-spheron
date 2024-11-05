@@ -8,10 +8,12 @@ services:
         as: 11434
         to:
           - global: true
+    env:
+      - OLLAMA_MODEL=llama3.2
     command:
       - "sh"
       - "-c"
-      - "apt update && apt install -y curl && /bin/ollama serve & while ! curl -s http://localhost:11434/api/tags > /dev/null; do sleep 1; done && /bin/ollama pull llama3.2 && /bin/ollama run llama3.2 'Hello' && tail -f /dev/null"
+      - "apt update && apt install -y curl && /bin/ollama serve & while ! curl -s http://localhost:11434/api/tags > /dev/null; do sleep 1; done && /bin/ollama pull $OLLAMA_MODEL && /bin/ollama run $OLLAMA_MODEL 'Hello' && tail -f /dev/null"
 profiles:
   name: ollama-testing
   duration: 1h
