@@ -3,6 +3,7 @@ version: "1.0"
 services:
   ollama-test:
     image: ghcr.io/open-webui/open-webui:ollama
+    pull_policy: IfNotPresent
     expose:
       - port: 8080
         as: 8080

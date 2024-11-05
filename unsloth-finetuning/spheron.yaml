@@ -3,6 +3,7 @@ version: "1.0"
 services:
   unsloth-finetuning:
     image: spheronnetwork/unsloth-finetuning:cuda12-pytorch
+    pull_policy: IfNotPresent
     expose:
       - port: 8888
         as: 8888

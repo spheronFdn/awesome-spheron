@@ -11,18 +11,24 @@ RUN apt-get update && apt-get install -y \
     git \
     curl \
     wget \
-    sudo \
-    && rm -rf /var/lib/apt/lists/*
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* \
+    && which python3 \
+    && which pip3 \
+    && ln -sf /usr/bin/python3 /usr/bin/python \
+    && ln -sf /usr/bin/pip3 /usr/bin/pip
 
 # Install code-server
 RUN curl -fsSL https://code-server.dev/install.sh | sh
 
 # Create a non-root user
 RUN useradd -m -s /bin/bash coder && \
-    echo "coder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/nopasswd
+    mkdir -p /etc/sudoers.d && \
+    echo "coder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/nopasswd && \
+    chmod 440 /etc/sudoers.d/nopasswd
 
 # Install PyTorch with CUDA support
-RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 
 # Set environment variables
 ENV PUID=1000

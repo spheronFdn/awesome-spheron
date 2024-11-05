@@ -3,6 +3,7 @@ version: "1.0"
 services:
   ollama-test:
     image: ollama/ollama:0.3.12
+    pull_policy: IfNotPresent
     expose:
       - port: 11434
         as: 11434

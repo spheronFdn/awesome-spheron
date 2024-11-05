@@ -3,6 +3,7 @@ version: "1.0"
 services:
   web:
     image: vatsalshah01/bitnet-inference:latest
+    pull_policy: IfNotPresent
     expose:
       - port: 8000
         as: 8000

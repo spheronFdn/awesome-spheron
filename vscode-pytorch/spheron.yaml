@@ -3,6 +3,7 @@ version: "1.0"
 services:
   vscode-pytorch:
     image: spheronnetwork/vscode-pytorch:latest
+    pull_policy: IfNotPresent
     expose:
       - port: 8080
         as: 8080

@@ -2,6 +2,7 @@ version: "1.0"
 services:
   vllmtest:
     image: ghcr.io/vllm-project/vllm:latest
+    pull_policy: IfNotPresent
     env:
       - HF_TOKEN=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
     expose:

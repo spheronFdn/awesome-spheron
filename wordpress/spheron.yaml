@@ -2,6 +2,7 @@ version: "1.0"
 services:
   wordpress:
     image: wordpress
+    pull_policy: IfNotPresent
     expose:
       - port: 80
         as: 8080
@@ -20,6 +21,7 @@ services:
   db:
     # We use a mariadb image which supports both amd64 & arm64 architecture
     image: mariadb:10.6.4
+    pull_policy: IfNotPresent
     expose:
       - port: 3306
         as: 3306

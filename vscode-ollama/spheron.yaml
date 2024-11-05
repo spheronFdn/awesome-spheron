@@ -3,6 +3,7 @@ version: "1.0"
 services:
   vscode:
     image: lscr.io/linuxserver/code-server
+    pull_policy: IfNotPresent
     expose:
       - port: 8443
         as: 8443
@@ -20,6 +21,7 @@ services:
       - OLLAMA_HOST=ollama:11434
   ollama:
     image: ollama/ollama:latest
+    pull_policy: IfNotPresent
     expose:
       - port: 11434
         as: 11434
