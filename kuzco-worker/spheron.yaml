@@ -2,16 +2,15 @@ version: "1.0"
 
 services:
   kuzco-worker:
-    image: kuzcoxyz/worker:latest
+    image: kuzcoxyz/amd64-ollama-nvidia-worker
     expose:
       - port: 8080
         as: 8080
         to:
           - global: true
-    command:
-      - kuzco
-      - worker
-      - start
+    env:
+      - CACHE_DIRECTORY=/root/models
+    args:
       - --worker
       - [worker_id] # TODO: replace with actual worker id from kuzco dashboard
       - --code
@@ -39,12 +38,10 @@ profiles:
                 - model: rtx4090
   placement:
     westcoast:
-      attributes:
-        region: us-west
       pricing:
         kuzco-worker:
-          token: USDT
-          amount: 5
+          token: CST
+          amount: 1
 
 deployment:
   kuzco-worker:
