@@ -11,7 +11,7 @@ code-server --bind-addr 0.0.0.0:8080 --auth none /workspace &
 # export RAY_GRAFANA_HOST="http://${POD_IP}:3000"
 
 # Start Ray with metrics enabled
-ray start --head --port=6379 --dashboard-port=8265 --dashboard-host=0.0.0.0 --metrics-export-port=8080 --include-dashboard=true --block
+ray start --head --node-ip-address $GATEWAY_IP --port=$TUNNEL_PORT_6379 --dashboard-port=$TUNNEL_PORT_8265 --dashboard-host=0.0.0.0 --include-dashboard=true  --dashboard-grpc-port=$TUNNEL_PORT_8006  --ray-client-server-port=$TUNNEL_PORT_10001 --object-manager-port=$TUNNEL_PORT_8000 --node-manager-port=$TUNNEL_PORT_8001 --runtime-env-agent-port=$TUNNEL_PORT_8002 --dashboard-agent-grpc-port=$TUNNEL_PORT_8003 --dashboard-agent-listen-port=$TUNNEL_PORT_8004 --metrics-export-port=$TUNNEL_PORT_8005 --worker-port-list $TUNNEL_PORT_8007,$TUNNEL_PORT_8008,$TUNNEL_PORT_8009,$TUNNEL_PORT_8010,$TUNNEL_PORT_8011,$TUNNEL_PORT_8012,$TUNNEL_PORT_8013,$TUNNEL_PORT_8014,$TUNNEL_PORT_8015,$TUNNEL_PORT_8016,$TUNNEL_PORT_8017,$TUNNEL_PORT_8018,$TUNNEL_PORT_8019,$TUNNEL_PORT_8020 --block
 
 # if [ -z "${RAY_GRAFANA_HOST}" ]; then
 #     # Launch Prometheus

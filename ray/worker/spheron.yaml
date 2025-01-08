@@ -3,7 +3,7 @@ version: "1.0"
 services:
   ray-worker:
     image: spheronnetwork/ray-worker-node:latest
-    pull_policy: Always
+    pull_policy: IfNotPresent
     expose:
       - port: 8000
         as: 8000
@@ -111,7 +111,7 @@ services:
         to:
           - global: true
     env:
-      - HEAD_NODE_ADDRESS=provider.testnetbsphn.xyz:31935
+      - HEAD_NODE_ADDRESS=provider.testnetbsphn.xyz:20035
 profiles:
   name: ray-worker-testing
   mode: fizz

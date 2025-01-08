@@ -2,7 +2,8 @@ version: "1.0"
 
 services:
   ray-head:
-    image: spheronnetwork/ray-head-node:latest
+    image: spheronnetwork/ray-head-node:v1
+    pull_policy: IfNotPresent
     expose:
       - port: 3000
         as: 3000
@@ -18,14 +19,122 @@ services:
           - global: true
       - port: 6379
         as: 6379
+        use_public_port: true
         to:
           - global: true
       - port: 8265
         as: 8265
+        use_public_port: true
         to:
           - global: true
       - port: 10001
         as: 10001
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8000
+        as: 8000
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8001
+        as: 8001
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8002
+        as: 8002
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8003
+        as: 8003
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8004
+        as: 8004
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8005
+        as: 8005
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8006
+        as: 8006
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8007
+        as: 8007
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8008
+        as: 8008
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8009
+        as: 8009
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8010
+        as: 8010
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8011
+        as: 8011
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8012
+        as: 8012
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8013
+        as: 8013
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8014
+        as: 8014
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8015
+        as: 8015
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8016
+        as: 8016
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8017
+        as: 8017
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8018
+        as: 8018
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8019
+        as: 8019
+        use_public_port: true
+        to:
+          - global: true
+      - port: 8020
+        as: 8020
+        use_public_port: true
         to:
           - global: true
     env:
@@ -33,7 +142,7 @@ services:
 profiles:
   name: ray-head-testing
   duration: 1h
-  mode: provider
+  mode: fizz
   tier:
     - community
   compute:
@@ -47,8 +156,6 @@ profiles:
           - size: 100Gi
   placement:
     westcoast:
-      attributes:
-        region: france
       pricing:
         ray-head:
           token: USDT
