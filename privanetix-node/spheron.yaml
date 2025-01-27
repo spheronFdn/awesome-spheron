@@ -1,0 +1,42 @@
+version: "1.0"
+
+services:
+  privasea-node:
+    image: privasea/acceleration-node-beta:latest
+    pull_policy: IfNotPresent
+    expose:
+      - port: 8181
+        as: 8181
+        to:
+          - global: true
+    env:
+      - KEYSTORE_PASSWORD=<KEYSTORE_PASSWORD>
+profiles:
+  name: privasea-accelaration-node
+  duration: 8h
+  mode: provider
+  tier:
+    - community
+  compute:
+    privasea-node:
+      resources:
+        cpu:
+          units: 16
+        memory:
+          size: 8Gi
+        storage:
+          - size: 100Gi
+  placement:
+    westcoast:
+      attributes:
+        region: romania
+      pricing:
+        privasea-node:
+          token: USDT
+          amount: 1
+
+deployment:
+  privasea-node:
+    westcoast:
+      profile: privasea-node
+      count: 1
