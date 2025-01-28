@@ -6,7 +6,6 @@ mkdir -p /app/config
 
 # Write keystore file
 echo "${KEYSTORE_CONTENT}" > /app/config/wallet_keystore
-chmod 600 /app/config/wallet_keystore
 
 export KEYSTORE_PASSWORD="${KEYSTORE_PASSWORD}"
 
