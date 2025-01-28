@@ -2,17 +2,16 @@ version: "1.0"
 
 services:
   privasea-node:
-    image: privasea/acceleration-node-beta:latest
+    image: spheronnetwork/privasea-acceleration-node-beta:latest
     pull_policy: IfNotPresent
     expose:
       - port: 8181
         as: 8181
         to:
           - global: true
-    command:
-      - "tail" 
-      - "-f"
-      - "/dev/null"
+    env:
+      - KEYSTORE_CONTENT: <KEYSTORE_CONTENT>
+      - KEYSTORE_PASSWORD: <KEYSTORE_PASSWORD>
 profiles:
   name: privasea-accelaration-node
   duration: 8h
