@@ -10,8 +10,8 @@ services:
         to:
           - global: true
     env:
-      - KEYSTORE_CONTENT: <KEYSTORE_CONTENT>
-      - KEYSTORE_PASSWORD: <KEYSTORE_PASSWORD>
+      - KEYSTORE_CONTENT=<KEYSTORE_CONTENT>
+      - KEYSTORE_PASSWORD=<KEYSTORE_PASSWORD>
 profiles:
   name: privasea-accelaration-node
   duration: 8h
