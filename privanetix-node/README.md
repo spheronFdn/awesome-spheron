@@ -1,49 +1,53 @@
-# Deploy privasea acceleration-node
+# Deploying the PrivaSea Acceleration Node
 
-Official documentation: https://www.privasea.ai/privanetix-node
-Deploying a node: https://privasea.gitbook.io/user-node-usage-documentation/comprehensive-guide-to-privanetix-node-acceleration-node-and-workheart-node-setup-and-operation/privanetix-node
+**Official Documentation:**  
+- [PrivaSea Website](https://www.privasea.ai/privanetix-node)  
+- [Comprehensive Deployment Guide](https://privasea.gitbook.io/user-node-usage-documentation/comprehensive-guide-to-privanetix-node-acceleration-node-and-workheart-node-setup-and-operation/privanetix-node)
 
-### NOTE
-This node is configured for Level 1 configuration. update `spheron.yaml` according to required level.
+This node is configured for **Level 1** by default. If you need a different configuration level, please update the `resources` section of your `spheron.yaml` accordingly.
 
-Prerequisite steps:
-1. Deploy using sphnctl:
-```bash
-$ sphnctl deployment create spheron.yml
+## Steps to Deploy
+
+### 1. Generate a Keystore
+Follow the instructions in the [Deploying a Node guide](https://privasea.gitbook.io/user-node-usage-documentation/comprehensive-guide-to-privanetix-node-acceleration-node-and-workheart-node-setup-and-operation/privanetix-node) to create your keystore. Once generated, you will have a `wallet_keystore` file and a corresponding **keystore password**.
+
+### 2. Update `spheron.yaml` Environment Variables
+
+You can deploy the acceleration node in **two modes**:
+
+#### **A) KEYSTORE_CONTENT Mode** (Recommended for Spheron CLI Users)
+1. Copy the contents of your `wallet_keystore` file and assign it to `KEYSTORE_CONTENT`.  
+   \- To confirm what to copy, run:  
+   ```bash
+   cat $HOME/privasea/config/wallet_keystore
+   ```
+2. Set the keystore’s password in `KEYSTORE_PASSWORD`.
+
+#### **B) PRIVATE_KEY Mode** (Recommended for SuperNoderz Users)
+If you want to generate the keystore **inside** the container rather than passing the entire keystore content, specify these environment variables in `spheron.yaml`:
+
+```yaml
+- API_URL=<API_HOST>
+- API_KEY=<API_KEY>
+- PRIVATE_KEY=<PRIVATE_KEY>
+- KEYSTORE_PASSWORD=<KEYSTORE_PASSWORD>
 ```
 
-2. Shell into deployment
+While working with supernoderz, use `spheronnetwork/privasea-acceleration-node-beta:supernoderz` image in spheron.yaml
+
+In this mode:
+- The keystore is generated automatically from your private key and desired password.  
+- You do **not** store or pass the full keystore JSON in the YAML file, which is more secure.  
+- You can deploy this node using the [SuperNoderz platform](https://www.supernoderz.com/).
+
+### 3. Deploy with `sphnctl`
+
+Once your `spheron.yaml` is properly configured, run:
 
 ```bash
-$ sphnctl deployment shell privasea-node /bin/sh --lid 44 --stdin --tty 
+sphnctl deployment create spheron.yml
 ```
 
-2. Generate the keystore file
-```bash
-$ ./node-calc new_keystore
-```
-After successful creation of the wallet, the program will display information similar to the following:
-```bash
-node address: 0xf07c3eF23ae7BEb8CD8bA5fF546E35Fd4b332B34
-# This is the node address you generated, used for linking in the dashboard 
-node filename: keystore:///app/config/UTC--2025-01-06T06-11-07.485797065Z--f07c3ef23ae7beb8cd8ba5ff546e35fd4b332b34
-```
-3. Rename keystore
-cd config && ls
+## Further Help
 
-- Rename the keystore file you noted in the previous step:
-```bash
-mv ./UTC--2025-01-06T06-11-07.485797065Z--f07c3ef23ae7beb8cd8ba5ff546e35fd4b332b34  ./wallet_keystore 
-ls 
-```
-- Replace UTC--2025-01-06T06-11-07.485797065Z--f07c3ef23ae7beb8cd8ba5ff546e35fd4b332b34 with the name of the keystore file you found.
-
-- Check that the wallet_keystore file in the /privasea/config folder was modified correctly:
-
-4. Run node
-```bash
-$ export KEYSTORE_PASSWORD=<PASSWORD>
-$ ./node-calc
-```
-
-### NOTE: Follow instructions in `Deploying a node` documentation for more queries
+For detailed instructions and troubleshooting, see the [official node deployment guide](https://privasea.gitbook.io/user-node-usage-documentation/comprehensive-guide-to-privanetix-node-acceleration-node-and-workheart-node-setup-and-operation/privanetix-node). If you have additional questions, refer to the [PrivaSea documentation](https://www.privasea.ai/privanetix-node).
