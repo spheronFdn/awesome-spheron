@@ -33,6 +33,8 @@ If you want to generate the keystore **inside** the container rather than passin
 - KEYSTORE_PASSWORD=<KEYSTORE_PASSWORD>
 ```
 
+While working with supernoderz, use `spheronnetwork/privasea-acceleration-node-beta:supernoderz` image in spheron.yaml
+
 In this mode:
 - The keystore is generated automatically from your private key and desired password.  
 - You do **not** store or pass the full keystore JSON in the YAML file, which is more secure.  

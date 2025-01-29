@@ -2,7 +2,7 @@ version: "1.0"
 
 services:
   privasea-node:
-    image: spheronnetwork/privasea-acceleration-node-beta:supernoderz
+    image: spheronnetwork/privasea-acceleration-node-beta:latest
     pull_policy: IfNotPresent
     expose:
       - port: 8181
@@ -19,7 +19,7 @@ services:
       - API_KEY=<API_KEY>
 profiles:
   name: privasea-accelaration-node
-  duration: 1h
+  duration: 8h
   mode: provider
   tier:
     - community
