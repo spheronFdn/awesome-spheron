@@ -2,7 +2,7 @@ version: "1.0"
 
 services:
   py-cuda:
-    image: quay.io/jupyter/pytorch-notebook:cuda12-pytorch-2.4.1
+    image: spheronnetwork/jupyter-notebook:pytorch-2.4.1-cuda-enabled
     pull_policy: IfNotPresent
     expose:
       - port: 8888
