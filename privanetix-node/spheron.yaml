@@ -12,7 +12,7 @@ services:
     env:
       - KEYSTORE_PASSWORD=<KEYSTORE_PASSWORD>
 profiles:
-  name: privasea-accelaration-node
+  name: privasea-acceleration-node
   duration: 8h
   mode: provider
   tier:
