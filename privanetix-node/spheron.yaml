@@ -2,7 +2,7 @@ version: "1.0"
 
 services:
   privasea-node:
-    image: privasea/acceleration-node-beta:latest
+    image: spheronnetwork/privasea-acceleration-node-beta:latest
     pull_policy: IfNotPresent
     expose:
       - port: 8181
@@ -10,7 +10,13 @@ services:
         to:
           - global: true
     env:
+      # For spheron cli mode
+      - KEYSTORE_CONTENT=<KEYSTORE_CONTENT>
       - KEYSTORE_PASSWORD=<KEYSTORE_PASSWORD>
+      # For supernoderz mode
+      - PRIVATE_KEY=<PRIVATE_KEY> 
+      - API_URL=<API_URL>
+      - API_KEY=<API_KEY>
 profiles:
   name: privasea-accelaration-node
   duration: 8h
@@ -28,8 +34,6 @@ profiles:
           - size: 100Gi
   placement:
     westcoast:
-      attributes:
-        region: romania
       pricing:
         privasea-node:
           token: USDT
