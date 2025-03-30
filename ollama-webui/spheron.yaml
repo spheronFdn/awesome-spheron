@@ -1,7 +1,7 @@
 version: "1.0"
 
 services:
-  ollama-test:
+  ollama:
     image: ghcr.io/open-webui/open-webui:ollama
     pull_policy: IfNotPresent
     expose:
@@ -10,13 +10,11 @@ services:
         to:
           - global: true
 profiles:
-  name: ollama-testing
+  name: ollama
   duration: 2h
   mode: fizz
-  tier:
-    - community
   compute:
-    ollama-test:
+    ollama:
       resources:
         cpu:
           units: 6
@@ -32,15 +30,13 @@ profiles:
                 - model: rtx4090
   placement:
     westcoast:
-      attributes:
-        region: romania
       pricing:
-        ollama-test:
-          token: USDT
+        ollama:
+          token: CST
           amount: 1
 
 deployment:
-  ollama-test:
+  ollama:
     westcoast:
-      profile: ollama-test
+      profile: ollama
       count: 1

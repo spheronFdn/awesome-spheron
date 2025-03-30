@@ -4,43 +4,57 @@ This repository contains a collection of ready-to-deploy GPU application templat
 
 ## Available Templates
 
-### AI x Web3 Protocols
-
-1. [**Flock Validator**](./flock-validator)
-
-   - Run a validator node for the Flock protocol
-   - Requires GPU resources
-
-2. [**Kuzco Worker**](./kuzco-worker)
-   - Deploy a worker node for the Kuzco protocol
-   - Utilizes Spheron's GPU infrastructure
-
 ### AI Development Templates
 
-3. [**Jupyter Notebook with PyTorch**](./jupyter-with-pytorch)
+1. [**Jupyter Notebook with PyTorch**](./jupyter-with-pytorch)
 
    - Pre-installed PyTorch environment
    - Ready for data science and machine learning tasks
 
-4. [**Ollama with WebUI**](./ollama-webui)
+2. [**Ollama with WebUI**](./ollama-webui)
 
    - Test and interact with various LLMs supported by Ollama
    - User-friendly web interface
 
-5. [**Ollama with Pre-installed Model**](./ollama-with-llama3.2/)
+3. [**Ollama with Pre-installed Model**](./ollama-with-llama3.2/)
 
    - Ollama server pre-configured with LLaMA 3.2
    - Easily customizable to use any model from the Ollama registry
 
-6. [**VS Code with Ollama**](./vscode-ollama)
+4. [**Ray**](./ray)
 
    - Remote development environment with GPU support
    - Ideal for building AI applications using Ollama
    - Can be adapted to host your own AI application
 
+5. [**VS Code with Ollama**](./vscode-ollama)
+
+   - Remote development environment with GPU support
+   - Ideal for building AI applications using Ollama
+   - Can be adapted to host your own AI application
+
+6. [**VS Code with PyTorch**](./vscode-pytorch)
+
+   - Remote development environment with GPU support
+   - Ideal for building AI applications using PyTorch
+   - Can be adapted to host your own AI application
+
 7. [**Unsloth Finetuning**](./unsloth-finetuning)
+
    - Pre-installed Unsloth Jupyter notebook
    - Helpful for trying out finetuning using the Unsloth library
+
+8. [**VLLM**](./vllm-shared-memory)
+
+   - Pre-installed VLLM
+   - Helpful for running VLLM models
+
+### Blogging Tools
+
+1. [**WordPress**](./wordpress)
+
+   - Pre-installed WordPress
+   - Helpful for running a blog
 
 ## Getting Started
 

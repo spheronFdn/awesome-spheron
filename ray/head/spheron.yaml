@@ -31,11 +31,9 @@ services:
     env:
       - RAY_health_check_timeout_ms=20000
 profiles:
-  name: ray-head-testing
+  name: ray-head
   duration: 1h
   mode: provider
-  tier:
-    - community
   compute:
     ray-head:
       resources:
@@ -47,11 +45,9 @@ profiles:
           - size: 100Gi
   placement:
     westcoast:
-      attributes:
-        region: france
       pricing:
         ray-head:
-          token: USDT
+          token: CST
           amount: 1
 
 deployment:

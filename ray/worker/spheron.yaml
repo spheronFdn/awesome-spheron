@@ -111,13 +111,11 @@ services:
         to:
           - global: true
     env:
-      - HEAD_NODE_ADDRESS=provider.testnetbsphn.xyz:31935
+      - HEAD_NODE_ADDRESS=
 profiles:
-  name: ray-worker-testing
+  name: ray-worker
   mode: fizz
   duration: 1h
-  tier:
-    - community
   compute:
     ray-worker:
       resources:
@@ -137,7 +135,7 @@ profiles:
     westcoast:
       pricing:
         ray-worker:
-          token: USDC
+          token: CST
           amount: 1
 
 deployment:

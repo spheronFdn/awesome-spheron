@@ -2,7 +2,7 @@ version: "1.0"
 
 services:
   py-cuda:
-    image: spheronnetwork/jupyter-notebook:pytorch-2.4.1-cuda-enabled
+    image: spheronfdn/jupyter-notebook:pytorch-2.4.1-cuda-enabled
     pull_policy: IfNotPresent
     expose:
       - port: 8888
@@ -15,8 +15,6 @@ profiles:
   name: py-cuda
   duration: 2h
   mode: provider
-  tier:
-    - community
   compute:
     py-cuda:
       resources:
@@ -31,15 +29,13 @@ profiles:
           attributes:
             vendor:
               nvidia:
-                - model: h100
+                - model: rtx4090
   placement:
     westcoast:
-      attributes:
-        region: us-west
       pricing:
         py-cuda:
-          token: USDT
-          amount: 10
+          token: CST
+          amount: 1
 
 deployment:
   py-cuda:

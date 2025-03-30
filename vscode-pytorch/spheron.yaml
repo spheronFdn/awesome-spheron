@@ -13,17 +13,13 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
-      - PASSWORD=mitra
-      - HASHED_PASSWORD=
-      - SUDO_PASSWORD=mitra
-      - SUDO_PASSWORD_HASH=
+      - PASSWORD=
+      - SUDO_PASSWORD=
       - DEFAULT_WORKSPACE=/config/workspace
 profiles:
   name: vscode-pytorch
   duration: 1h
   mode: provider
-  tier:
-    - community
   compute:
     vscode-pytorch:
       resources:
@@ -43,8 +39,8 @@ profiles:
     westcoast:
       pricing:
         vscode-pytorch:
-          token: USDT
-          amount: 5
+          token: CST
+          amount: 1
 
 deployment:
   vscode-pytorch:

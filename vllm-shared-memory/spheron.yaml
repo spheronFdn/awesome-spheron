@@ -4,7 +4,7 @@ services:
     image: ghcr.io/vllm-project/vllm:latest
     pull_policy: IfNotPresent
     env:
-      - HF_TOKEN=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
+      - HF_TOKEN=
     expose:
       - port: 8080
         to:
@@ -30,9 +30,7 @@ services:
 profiles:
   name: vllm
   mode: provider
-  duration: 30min
-  tier:
-    - community
+  duration: 1hr
   compute:
     vllmtest:
       resources:
@@ -55,12 +53,10 @@ profiles:
                 - model: rtx4090
   placement:
     centralcoast:
-      attributes:
-        region: us-central
       pricing:
         vllmtest:
-          token: USDT
-          amount: 5
+          token: CST
+          amount: 1
 
 deployment:
   vllmtest:

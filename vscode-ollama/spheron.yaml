@@ -14,9 +14,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
       - PASSWORD=password
-      - HASHED_PASSWORD=
       - SUDO_PASSWORD=password
-      - SUDO_PASSWORD_HASH=
       - DEFAULT_WORKSPACE=/config/workspace
       - OLLAMA_HOST=ollama:11434
   ollama:
@@ -37,8 +35,7 @@ services:
 profiles:
   name: vscode-ollama
   duration: 1h
-  tier:
-    - community
+  mode: provider
   compute:
     vscode:
       resources:
@@ -64,14 +61,12 @@ profiles:
                 - model: rtx4090
   placement:
     westcoast:
-      attributes:
-        region: us-central
       pricing:
         vscode:
-          token: USDT
+          token: CST
           amount: 0.5
         ollama:
-          token: USDT
+          token: CST
           amount: 1
 deployment:
   vscode:

@@ -1,7 +1,7 @@
 version: "1.0"
 
 services:
-  ollama-test:
+  ollama:
     image: ollama/ollama:0.3.12
     pull_policy: IfNotPresent
     expose:
@@ -16,13 +16,11 @@ services:
       - "-c"
       - "apt update && apt install -y curl && /bin/ollama serve & while ! curl -s http://localhost:11434/api/tags > /dev/null; do sleep 1; done && /bin/ollama pull $OLLAMA_MODEL && /bin/ollama run $OLLAMA_MODEL 'Hello' && tail -f /dev/null"
 profiles:
-  name: ollama-testing
+  name: ollama
   duration: 1h
   mode: provider
-  tier:
-    - community
   compute:
-    ollama-test:
+    ollama:
       resources:
         cpu:
           units: 1
@@ -35,18 +33,16 @@ profiles:
           attributes:
             vendor:
               nvidia:
-                - model: rtx3090
+                - model: rtx4090
   placement:
     westcoast:
-      attributes:
-        region: us-east
       pricing:
-        ollama-test:
-          token: USDT
-          amount: 5
+        ollama:
+          token: CST
+          amount: 1
 
 deployment:
-  ollama-test:
+  ollama:
     westcoast:
-      profile: ollama-test
+      profile: ollama
       count: 1

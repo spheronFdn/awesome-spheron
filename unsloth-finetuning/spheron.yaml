@@ -10,12 +10,11 @@ services:
         to:
           - global: true
     env:
-      - JUPYTER_TOKEN=testing123
+      - JUPYTER_TOKEN=
 profiles:
   name: unsloth-finetuning
   duration: 1h
-  tier:
-    - community
+  mode: provider
   compute:
     unsloth-finetuning:
       resources:
@@ -33,12 +32,10 @@ profiles:
                 - model: rtx4090
   placement:
     westcoast:
-      attributes:
-        region: us-west
       pricing:
         unsloth-finetuning:
-          token: USDT
-          amount: 5
+          token: CST
+          amount: 1
 
 deployment:
   unsloth-finetuning:

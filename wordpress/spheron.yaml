@@ -40,8 +40,6 @@ profiles:
   name: spheron-wordpress
   mode: provider
   duration: 1h
-  tier:
-    - community
   compute:
     wordpress:
       resources:
@@ -61,14 +59,12 @@ profiles:
           - size: 1Gi
   placement:
     westcoast:
-      attributes:
-        region: us-west
       pricing:
         wordpress:
-          token: USDT
+          token: CST
           amount: 0.5
         db:
-          token: USDT
+          token: CST
           amount: 0.5
 deployment:
   wordpress:
