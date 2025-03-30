@@ -2,7 +2,7 @@ version: "1.0"
 
 services:
   vscode-pytorch:
-    image: spheronnetwork/vscode-pytorch:latest
+    image: spheronfdn/vscode-pytorch:latest
     pull_policy: IfNotPresent
     expose:
       - port: 8080
@@ -13,8 +13,8 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
-      - PASSWORD=
-      - SUDO_PASSWORD=
+      - PASSWORD=test
+      - SUDO_PASSWORD=test
       - DEFAULT_WORKSPACE=/config/workspace
 profiles:
   name: vscode-pytorch
@@ -24,11 +24,11 @@ profiles:
     vscode-pytorch:
       resources:
         cpu:
-          units: 1
+          units: 8
         memory:
-          size: 2Gi
+          size: 16Gi
         storage:
-          - size: 50Gi
+          - size: 100Gi
         gpu:
           units: 1
           attributes:
@@ -37,10 +37,12 @@ profiles:
                 - model: rtx4090
   placement:
     westcoast:
+      attributes:
+        desired_provider: "0x5Ed271e74ff9b6aB90A7D18B7f4103D6ad361D2b"
       pricing:
         vscode-pytorch:
           token: CST
-          amount: 1
+          amount: 1.1
 
 deployment:
   vscode-pytorch:

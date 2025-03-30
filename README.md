@@ -16,7 +16,7 @@ This repository contains a collection of ready-to-deploy GPU application templat
    - Test and interact with various LLMs supported by Ollama
    - User-friendly web interface
 
-3. [**Ollama with Pre-installed Model**](./ollama-with-llama3.2/)
+3. [**Ollama with Pre-loaded Model**](./ollama-with-preloaded-model/)
 
    - Ollama server pre-configured with LLaMA 3.2
    - Easily customizable to use any model from the Ollama registry
@@ -43,11 +43,6 @@ This repository contains a collection of ready-to-deploy GPU application templat
 
    - Pre-installed Unsloth Jupyter notebook
    - Helpful for trying out finetuning using the Unsloth library
-
-8. [**VLLM**](./vllm-shared-memory)
-
-   - Pre-installed VLLM
-   - Helpful for running VLLM models
 
 ### Blogging Tools
 

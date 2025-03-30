@@ -12,7 +12,7 @@ services:
 profiles:
   name: ollama
   duration: 2h
-  mode: fizz
+  mode: provider
   compute:
     ollama:
       resources:

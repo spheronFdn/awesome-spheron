@@ -2,7 +2,7 @@ version: "1.0"
 
 services:
   unsloth-finetuning:
-    image: spheronnetwork/unsloth-finetuning:cuda12-pytorch
+    image: spheronfdn/unsloth-finetuning:cuda12-pytorch
     pull_policy: IfNotPresent
     expose:
       - port: 8888
@@ -10,7 +10,7 @@ services:
         to:
           - global: true
     env:
-      - JUPYTER_TOKEN=
+      - JUPYTER_TOKEN=test
 profiles:
   name: unsloth-finetuning
   duration: 1h
@@ -29,13 +29,13 @@ profiles:
           attributes:
             vendor:
               nvidia:
-                - model: rtx4090
+                - model: rtx6000-ada
   placement:
     westcoast:
       pricing:
         unsloth-finetuning:
           token: CST
-          amount: 1
+          amount: 2
 
 deployment:
   unsloth-finetuning:

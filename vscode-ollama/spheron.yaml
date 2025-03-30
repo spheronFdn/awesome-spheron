@@ -13,8 +13,8 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
-      - PASSWORD=password
-      - SUDO_PASSWORD=password
+      - PASSWORD=test
+      - SUDO_PASSWORD=test
       - DEFAULT_WORKSPACE=/config/workspace
       - OLLAMA_HOST=ollama:11434
   ollama:

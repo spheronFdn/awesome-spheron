@@ -9,8 +9,8 @@ services:
         as: 8888
         to:
           - global: true
-      env:
-        - JUPYTER_TOKEN=sentient
+    env:
+      - JUPYTER_TOKEN=test
 profiles:
   name: py-cuda
   duration: 2h
