@@ -34,7 +34,7 @@ profiles:
     westcoast:
       pricing:
         unsloth-finetuning:
-          token: CST
+          token: uSPON
           amount: 2
 
 deployment:

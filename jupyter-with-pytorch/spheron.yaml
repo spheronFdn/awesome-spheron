@@ -34,7 +34,7 @@ profiles:
     westcoast:
       pricing:
         py-cuda:
-          token: CST
+          token: uSPON
           amount: 1
 
 deployment:

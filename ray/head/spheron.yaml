@@ -47,7 +47,7 @@ profiles:
     westcoast:
       pricing:
         ray-head:
-          token: CST
+          token: uSPON
           amount: 1
 
 deployment:

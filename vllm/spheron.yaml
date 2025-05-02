@@ -39,7 +39,7 @@ profiles:
     westcoast:
       pricing:
         vllm:
-          token: CST
+          token: uSPON
           amount: 1.5
 
 deployment:

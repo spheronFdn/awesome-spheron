@@ -63,10 +63,10 @@ profiles:
     westcoast:
       pricing:
         vscode:
-          token: CST
+          token: uSPON
           amount: 0.5
         ollama:
-          token: CST
+          token: uSPON
           amount: 1
 deployment:
   vscode:

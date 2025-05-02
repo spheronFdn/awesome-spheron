@@ -41,7 +41,7 @@ profiles:
         desired_provider: "0x5Ed271e74ff9b6aB90A7D18B7f4103D6ad361D2b"
       pricing:
         vscode-pytorch:
-          token: CST
+          token: uSPON
           amount: 1.1
 
 deployment:
