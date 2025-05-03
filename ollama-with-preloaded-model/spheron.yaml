@@ -38,7 +38,7 @@ profiles:
     westcoast:
       pricing:
         ollama:
-          token: CST
+          token: uSPON
           amount: 1
 
 deployment:

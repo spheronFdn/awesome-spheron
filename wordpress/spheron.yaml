@@ -61,10 +61,10 @@ profiles:
     westcoast:
       pricing:
         wordpress:
-          token: CST
+          token: uSPON
           amount: 0.5
         db:
-          token: CST
+          token: uSPON
           amount: 0.5
 deployment:
   wordpress:

@@ -135,7 +135,7 @@ profiles:
     westcoast:
       pricing:
         ray-worker:
-          token: CST
+          token: uSPON
           amount: 1
 
 deployment:

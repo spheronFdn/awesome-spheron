@@ -61,7 +61,7 @@ To use these templates:
 
    OR
 
-   Follow the guide at [Spheron's Deploy Your App documentation](https://docs.spheron.network/user-guide/deploy-your-app) to deploy using the `sphnctl` CLI
+   Follow the guide at [Spheron's Deploy Your App documentation](https://docs.spheron.network/rent-gpu/deploy-container) to know different ways to deploy your app
 
 ## Contributing
 
