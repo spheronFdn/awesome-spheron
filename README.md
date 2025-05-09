@@ -44,6 +44,38 @@ This repository contains a collection of ready-to-deploy GPU application templat
    - Pre-installed Unsloth Jupyter notebook
    - Helpful for trying out finetuning using the Unsloth library
 
+### SSH Templates
+
+1. [**Nvidia Cuda**](./nvidia-cuda-devel)
+
+   - Pre-installed Nvidia Cuda Image on Ubuntu 22.04
+   - Helpful for building AI applications using Nvidia Cuda
+
+2. [**Nvidia Cudnn**](./nvidia-cudnn-devel)
+
+   - Pre-installed Nvidia Cudnn Image on Ubuntu 22.04
+   - Helpful for building AI applications using Nvidia Cudnn
+
+3. [**PyTorch**](./pytorch)
+
+   - Pre-installed PyTorch Image
+   - Helpful for building AI applications using PyTorch
+
+4. [**TensorFlow**](./tensorflow)
+
+   - Pre-installed TensorFlow Image
+   - Helpful for building AI applications using TensorFlow
+
+5. [**Basic Ubuntu 22.04**](./ubuntu22)
+
+   - Pre-installed Basic Ubuntu 22.04 Image
+   - Helpful for building AI applications using Basic Ubuntu 22.04
+
+6. [**Basic Ubuntu 24.04**](./ubuntu24)
+
+   - Pre-installed Basic Ubuntu 24.04 Image
+   - Helpful for building AI applications using Basic Ubuntu 24.04
+
 ### Blogging Tools
 
 1. [**WordPress**](./wordpress)

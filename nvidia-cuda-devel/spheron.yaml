@@ -1,0 +1,44 @@
+version: "1.0"
+
+services:
+  cuda-devel-server:
+    image: spheronfdn/cuda:12.3.1-devel-ubuntu22.04
+    pull_policy: Always
+    expose:
+      - port: 22
+        as: 22
+        to:
+          - global: true    
+profiles:
+  name: cuda-devel-server
+  duration: 1h
+  mode: provider
+  compute:
+    cuda-devel-server:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 4Gi
+        storage:
+          - size: 4Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                - model: t1000
+  placement:
+    westcoast:
+      attributes:
+        desired_provider: "0xa9322C6fA6978c4C87d3F654B86B67E55E03E0D0"
+      pricing:
+        cuda-devel-server:
+          token: uSPON
+          amount: 10
+
+deployment:
+  cuda-devel-server:
+    westcoast:
+      profile: cuda-devel-server
+      count: 1
