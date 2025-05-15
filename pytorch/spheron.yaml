@@ -9,14 +9,10 @@ services:
         as: 22
         to:
           - global: true
-      - port: 3000
-        as: 3000
-        to:
-          - global: true
     params:
       storage:
         default:
-          mount: /home/jovyan
+          mount: /mnt/data
           readOnly: false
 profiles:
   name: pytorch-server

@@ -9,6 +9,11 @@ services:
         as: 8080
         to:
           - global: true
+    params:
+      storage:
+        default:
+          mount: /mnt/data
+          readOnly: false
 profiles:
   name: ollama
   duration: 2h
@@ -19,9 +24,13 @@ profiles:
         cpu:
           units: 6
         memory:
-          size: 16Gi
+          size: 12Gi
         storage:
-          - size: 100Gi
+          name: "default"
+          size: 100Gi
+          attributes:
+            persistent: true
+            class: beta3
         gpu:
           units: 1
           attributes:

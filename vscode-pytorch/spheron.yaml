@@ -16,6 +16,11 @@ services:
       - PASSWORD=test
       - SUDO_PASSWORD=test
       - DEFAULT_WORKSPACE=/config/workspace
+    params:
+      storage:
+        default:
+          mount: /mnt/data
+          readOnly: false
 profiles:
   name: vscode-pytorch
   duration: 1h
@@ -28,7 +33,11 @@ profiles:
         memory:
           size: 16Gi
         storage:
-          - size: 100Gi
+          name: "default"
+          size: 120Gi
+          attributes:
+            persistent: true
+            class: beta3
         gpu:
           units: 1
           attributes:
@@ -37,8 +46,6 @@ profiles:
                 - model: rtx4090
   placement:
     westcoast:
-      attributes:
-        desired_provider: "0x5Ed271e74ff9b6aB90A7D18B7f4103D6ad361D2b"
       pricing:
         vscode-pytorch:
           token: uSPON

@@ -1,44 +1,35 @@
 version: "1.0"
 
 services:
-  ubuntu22-server:
+  ubuntu24-server:
     image: spheronfdn/ubuntu:24.04
     pull_policy: Always
     expose:
       - port: 22
         as: 22
         to:
-          - global: true    
+          - global: true
 profiles:
-  name: ubuntu22-server
+  name: ubuntu24-server
   duration: 1h
   mode: provider
   compute:
-    ubuntu22-server:
+    ubuntu24-server:
       resources:
         cpu:
           units: 4
         memory:
-          size: 4Gi
+          size: 8Gi
         storage:
-          - size: 4Gi
-        gpu:
-          units: 1
-          attributes:
-            vendor:
-              nvidia:
-                - model: t1000
+          - size: 100Gi
   placement:
     westcoast:
-      attributes:
-        desired_provider: "0xa9322C6fA6978c4C87d3F654B86B67E55E03E0D0"
       pricing:
-        ubuntu22-server:
+        ubuntu24-server:
           token: uSPON
-          amount: 10
-
+          amount: 1
 deployment:
-  ubuntu22-server:
+  ubuntu24-server:
     westcoast:
-      profile: ubuntu22-server
+      profile: ubuntu24-server
       count: 1
