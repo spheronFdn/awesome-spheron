@@ -9,6 +9,11 @@ services:
         as: 11434
         to:
           - global: true
+    params:
+      storage:
+        default:
+          mount: /mnt/data
+          readOnly: false
     env:
       - OLLAMA_MODEL=llama3.2
     command:
@@ -23,11 +28,15 @@ profiles:
     ollama:
       resources:
         cpu:
-          units: 1
+          units: 4
         memory:
-          size: 2Gi
+          size: 8Gi
         storage:
-          - size: 50Gi
+          name: "default"
+          size: 100Gi
+          attributes:
+            persistent: true
+            class: beta3
         gpu:
           units: 1
           attributes:

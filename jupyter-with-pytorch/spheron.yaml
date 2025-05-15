@@ -11,6 +11,11 @@ services:
           - global: true
     env:
       - JUPYTER_TOKEN=test
+    params:
+      storage:
+        default:
+          mount: /home/jovyan/work
+          readOnly: false
 profiles:
   name: py-cuda
   duration: 2h
@@ -23,7 +28,11 @@ profiles:
         memory:
           size: 16Gi
         storage:
-          - size: 200Gi
+          name: "default"
+          size: 200Gi
+          attributes:
+            persistent: true
+            class: beta3
         gpu:
           units: 1
           attributes:

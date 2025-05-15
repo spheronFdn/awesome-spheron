@@ -16,6 +16,11 @@ services:
       - "3000"
     env:
       - HUGGING_FACE_HUB_TOKEN=<hugging_face_hub_token>
+    params:
+      storage:
+        default:
+          mount: /mnt/data
+          readOnly: false
 profiles:
   name: vllm-deployment
   duration: 2h
@@ -28,7 +33,11 @@ profiles:
         memory:
           size: 16Gi
         storage:
-          - size: 120Gi
+          name: "default"
+          size: 120Gi
+          attributes:
+            persistent: true
+            class: beta3
         gpu:
           units: 1
           attributes:

@@ -8,7 +8,12 @@ services:
       - port: 22
         as: 22
         to:
-          - global: true    
+          - global: true
+    params:
+      storage:
+        default:
+          mount: /mnt/data
+          readOnly: false
 profiles:
   name: cuda-devel-server
   duration: 1h
@@ -17,25 +22,27 @@ profiles:
     cuda-devel-server:
       resources:
         cpu:
-          units: 4
+          units: 8
         memory:
-          size: 4Gi
+          size: 16Gi
         storage:
-          - size: 4Gi
+          name: "default"
+          size: 200Gi
+          attributes:
+            persistent: true
+            class: beta3
         gpu:
           units: 1
           attributes:
             vendor:
               nvidia:
-                - model: t1000
+                - model: rtx4090
   placement:
     westcoast:
-      attributes:
-        desired_provider: "0xa9322C6fA6978c4C87d3F654B86B67E55E03E0D0"
       pricing:
         cuda-devel-server:
           token: uSPON
-          amount: 10
+          amount: 1
 
 deployment:
   cuda-devel-server:

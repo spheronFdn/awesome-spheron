@@ -26,6 +26,11 @@ services:
         to:
           - global: false
           - service: vscode
+    params:
+      storage:
+        default:
+          mount: /mnt/data
+          readOnly: false
     env:
       - OLLAMA_MODEL=llama3.2
     command:
@@ -52,7 +57,11 @@ profiles:
         memory:
           size: 16Gi
         storage:
-          - size: 200Gi
+          name: "default"
+          size: 120Gi
+          attributes:
+            persistent: true
+            class: beta3
         gpu:
           units: 1
           attributes:
