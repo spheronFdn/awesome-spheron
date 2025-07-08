@@ -1,43 +1,43 @@
 version: "1.0"
 
 services:
-  vllm:
+  vllmserver:
     image: vllm/vllm-openai:latest
-    pull_policy: IfNotPresent
+    pull_policy: Always
     expose:
-      - port: 3000
-        as: 3000
+      - port: 8000
+        as: 8000
         to:
           - global: true
-    args:
-      - --model
-      - <model_name>
-      - --port
-      - "3000"
     env:
-      - HUGGING_FACE_HUB_TOKEN=<hugging_face_hub_token>
-    params:
-      storage:
-        default:
-          mount: /mnt/data
-          readOnly: false
+      - MODEL_NAME=mistralai/Mistral-7B-Instruct-v0.3
+      - HUGGING_FACE_HUB_TOKEN=
+    command:
+      - /bin/bash
+      - -c
+      - |
+        # Find Python executable
+        PYTHON_PATH=$(which python3 || which python || echo "/usr/bin/python3")
+        echo "Using Python at: $PYTHON_PATH"
+
+        # Start vLLM server
+        $PYTHON_PATH -m vllm.entrypoints.openai.api_server \
+          --model ${MODEL_NAME} \
+          --host 0.0.0.0 \
+          --port 8000
 profiles:
-  name: vllm-deployment
-  duration: 2h
+  name: vllmserver
+  duration: 1h
   mode: provider
   compute:
-    vllm:
+    vllmserver:
       resources:
         cpu:
           units: 8
         memory:
-          size: 16Gi
+          size: 32Gi
         storage:
-          name: "default"
-          size: 120Gi
-          attributes:
-            persistent: true
-            class: beta3
+          - size: 200Gi
         gpu:
           units: 1
           attributes:
@@ -47,12 +47,12 @@ profiles:
   placement:
     westcoast:
       pricing:
-        vllm:
+        vllmserver:
           token: uSPON
-          amount: 1.5
+          amount: 1
 
 deployment:
-  vllm:
+  vllmserver:
     westcoast:
-      profile: vllm
+      profile: vllmserver
       count: 1

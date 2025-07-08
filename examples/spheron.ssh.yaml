@@ -1,0 +1,51 @@
+version: "1.0"
+
+services:
+  cudnn-devel-server:
+    image: spheronfdn/cuda:12.4.1-cudnn-devel-ubuntu22.04
+    pull_policy: Always
+    expose:
+      - port: 22
+        as: 22
+        to:
+          - global: true
+    params:
+      storage:
+        default:
+          mount: /mnt/data
+          readOnly: false
+profiles:
+  name: cudnn-devel-server
+  duration: 1h
+  mode: provider
+  compute:
+    cudnn-devel-server:
+      resources:
+        cpu:
+          units: 8
+        memory:
+          size: 16Gi
+        storage:
+          name: "default"
+          size: 200Gi
+          attributes:
+            persistent: true
+            class: beta3
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                - model: rtx4090
+  placement:
+    westcoast:
+      pricing:
+        cudnn-devel-server:
+          token: uSPON
+          amount: 1
+
+deployment:
+  cudnn-devel-server:
+    westcoast:
+      profile: cudnn-devel-server
+      count: 1
