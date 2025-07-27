@@ -109,7 +109,7 @@ This project is licensed under the Apache License, Version 2.0. See the [LICENSE
 
 # Archived Repository
 
-This repository was initially used for educational and testing purposes during our early exploration of compute infrastructure, including a period of collaboration and experimentation with the Akash Network under the Apache 2.0 license.
+This repository was initially used for educational and testing purposes during our early exploration of compute infrastructure under the Apache 2.0 license.
 
 It is now archived and no longer maintained or used in production. The current Spheron codebase has been fully rewritten and migrated to:
 👉 [https://github.com/spheron-core/awesome-spheron](https://github.com/spheron-core/awesome-spheron)
